@@ -1,0 +1,17 @@
+{
+  "name": "ee-runner",
+  "description": "Runs JavaScript code from Google Earth Engine Playground using node.js",
+  "author": "Gennadii Donchyts <gennadiy.donchyts@gmail.com>",
+  "dependencies": {
+    "closure": "1.x.x",
+    "commander" : "2.8.x",
+    "googleapis" : "2.x.x",
+    "delayed-stream" : "1.x.x",
+    "deasync" : "x.x.x",
+    "generate-object-property": "1.0.x",
+    "generate-function": "2.0.x",
+    "jsonpointer": "2.0.x",
+    "xtend": "4.0.x",
+    "jsdom" : "3.x.x"
+  }
+}
