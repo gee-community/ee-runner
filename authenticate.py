@@ -12,11 +12,6 @@ import urllib
 import urllib2
 import webbrowser
 
-class OAuthInfo(object):
-  SCOPE = 'https://www.googleapis.com/auth/earthengine.readonly'
-  CLIENT_ID = ('578920177147-scqatb2mbriu1em3d7vbk40hsi2oqsbm.apps.googleusercontent.com')
-  CLIENT_SECRET = 'Zi6lxxjG-QOj8n-JZPWCXKhV'
-
 def main():
   # TODO(user): Add an additional, non-commandline flow for iPython notebook
   # for added convenience, and to work in notebook environments where
@@ -29,13 +24,15 @@ def main():
 
   # This URI prompts user to copy and paste a code after successful
   # authorization.
-  redirect_uri = 'urn:ietf:wg:oauth:2.0:oob'
+
+  with open('config/authinfo.json') as f:
+      authinfo = json.load(f)
 
   auth_request_params = {
-      'scope': OAuthInfo.SCOPE,
-      'redirect_uri': redirect_uri,
+      'scope': 'https://www.googleapis.com/auth/earthengine.readonly',
+      'redirect_uri': authinfo['redirect_uri'],
       'response_type': 'code',
-      'client_id': OAuthInfo.CLIENT_ID
+      'client_id': authinfo['client_id']
   }
   auth_request_url = ('https://accounts.google.com/o/oauth2/auth?' +
                       urllib.urlencode(auth_request_params))
@@ -55,9 +52,9 @@ def main():
 
   token_request_params = {
       'code': auth_code,
-      'client_id': OAuthInfo.CLIENT_ID,
-      'client_secret': OAuthInfo.CLIENT_SECRET,
-      'redirect_uri': redirect_uri,
+      'client_id': authinfo['client_id'],
+      'client_secret': authinfo['client_secret'],
+      'redirect_uri': authinfo['redirect_uri'],
       'grant_type': 'authorization_code'
   }
 
