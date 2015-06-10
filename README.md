@@ -1,12 +1,13 @@
 # ee-runner
-Node.js runner for Google Earth Engine scripts. The idea is that the playground scripts can run locally without changes.
+Node.js runner for Google Earth Engine scripts. Runs JavaScript playground scripts without changes.
 
-Initalize:
+Install:
 
 * npm install
-* python authenticate.py - saves refresh token in config/refresh_token.json
+* python authenticate.py
 
 Usage:
-* copy your EE Playground code into playground.js
+
+* place EE Playground code into playground.js
 * node ee-runner.js
 
