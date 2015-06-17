@@ -44,6 +44,10 @@ initialize = function(onsuccess) {
     var opener = require('opener')
     opener(uri)
 
+    console.log("If browser does not open, use the following URL to get access code:")
+    console.log(uri)
+    console.log()
+
     // ask user to enter authorization code   
     var readline = require('readline-sync');
     var auth_code = readline.question('Please enter authorization code: ');
