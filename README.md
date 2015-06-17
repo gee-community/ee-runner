@@ -20,8 +20,17 @@ Usage:
 * cat hello.js
 
 ```javascript
-var ic = new ee.ImageCollection('LANDSAT/LC8_L1T');
-var info = ee.Image(ic.first()).getInfo();
-print('Hello from Google Earth Engine!');
-print('First LANDSAT 8 image is: ' + info.id + ' aquired on ' + info.properties['DATE_ACQUIRED']);
+var image = ee.Image(ee.ImageCollection('LANDSAT/LC8_L1T_TOA').first());
+var info = image.getInfo();
+
+var date = info.properties['DATE_ACQUIRED']
+print('First LANDSAT 8 image is: ' + info.id + ' aquired on ' + date);
+
+print('Downloading thumbnail ...')
+
+var url = image
+  .visualize({bands:['B6','B5','B3'], gamma: 1.5})
+  .getThumbURL({dimensions:'1024x1024', format: 'jpg'});
+
+download(url, 'hello.jpg');
 ```

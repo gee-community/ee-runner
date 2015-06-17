@@ -38,10 +38,30 @@ require('./ext/earthengine-api/javascript/src/imagecollection')
 require('./ext/earthengine-api/javascript/src/terrain')
 require('./ext/earthengine-api/javascript/src/ee')
 
+var fs = require('fs')
+var request = require('request');
+
 // replacements used in playground code
 global.print = function(arg) { console.log(arg); }
 global.Map.addLayer = function(arg) {}
 global.Map.addCenterObject = function(arg) {}
+global.download = function(url, path) {
+  var finished = false;
+
+  var downloadAsync = function(uri, filename, callback){
+    request.head(uri, function(err, res, body){
+      request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+    });
+  };
+
+  downloadAsync(url, path, function(){
+    finished = true;
+  });
+
+  while(!finished) {
+     require('deasync').sleep(100);
+  }
+}
 
 // setup authorization
 gee = require('./authenticate')

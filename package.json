@@ -8,7 +8,6 @@
     "request" : "2.58.x",
     "readline-sync" : "1.2.19",
     "opener" : "1.4.1",
-    "sync-request" : "2.0.1",
     "googleapis" : "2.x.x",
     "delayed-stream" : "1.x.x",
     "deasync" : "x.x.x",
