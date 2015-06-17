@@ -74,9 +74,9 @@ initialize = function(onsuccess) {
     });
 
     // wait for results
-    while(refresh_token == null) {
-       require('deasync').sleep(100);
-    }
+    while(refresh_token == null) { require('deasync').sleep(100); }
+
+    require('mkdirp').sync(require('path').dirname(REFRESH_TOKEN_FILE));
 
     // write refresh_token to config file
     fs.writeFileSync(REFRESH_TOKEN_FILE, JSON.stringify({ refresh_token: refresh_token }), 'utf8');

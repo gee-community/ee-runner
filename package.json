@@ -9,6 +9,7 @@
     "readline-sync" : "1.2.19",
     "opener" : "1.4.1",
     "googleapis" : "2.x.x",
+    "mkdirp" : "0.5.1",
     "delayed-stream" : "1.x.x",
     "deasync" : "x.x.x",
     "generate-object-property": "1.0.x",
