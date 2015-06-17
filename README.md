@@ -14,8 +14,8 @@ Usage:
 
 * node ee-runner.js hello.js
 
-> Hello from Google Earth Engine!                                                                
 > First LANDSAT 8 image is: LANDSAT/LC8_L1T/LC80010042013269LGN00 aquired on 2013-09-26          
+> Downloading thumbnail ...
 
 * cat hello.js
 
