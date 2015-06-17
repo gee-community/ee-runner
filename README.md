@@ -8,25 +8,31 @@ Install:
 
 * Download and install [io.js](https://iojs.org).
 * Clone or download this repository.
-* npm install
+* Run: npm install
 
 Usage:
+* node ee-runner.js \<playground script file\>
+
+
+For example:
 
 * node ee-runner.js hello.js
 
-> First LANDSAT 8 image is: LANDSAT/LC8_L1T/LC80010042013269LGN00 aquired on 2013-09-26          
+> First LANDSAT 8 TOA image is aquired on 2013-09-26
 > Downloading thumbnail ...
 
 * cat hello.js
 
 ```javascript
-var image = ee.Image(ee.ImageCollection('LANDSAT/LC8_L1T_TOA').first());
+var image = new ee.Image(new ee.ImageCollection('LANDSAT/LC8_L1T_TOA').first());
 var info = image.getInfo();
 
 var date = info.properties['DATE_ACQUIRED']
-print('First LANDSAT 8 image is: ' + info.id + ' aquired on ' + date);
+print('First image in LANDSAT 8 TOA collection was aquired on ' + date);
 
-print('Downloading thumbnail ...')
+print(info);
+
+print('Downloading thumbnail ...');
 
 var url = image
   .visualize({bands:['B6','B5','B3'], gamma: 1.5})
@@ -34,3 +40,4 @@ var url = image
 
 download(url, 'hello.jpg');
 ```
+
