@@ -1,4 +1,4 @@
-var goog = require('closure').Closure({CLOSURE_BASE_PATH: 'ext\\closure-library\\closure\\goog\\'});
+var goog = require('closure').Closure({CLOSURE_BASE_PATH: 'ext\\closure-library\\closure\\goog' + require('path').sep});
 require('./ext/closure-library/closure/goog/bootstrap/nodejs')
 goog.require('goog.Uri');
 
