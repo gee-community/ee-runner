@@ -2,7 +2,9 @@
 
 Command line runner of [Google Earth Engine Playground](https://ee-api.appspot.com/) scripts using Node.js.
 
-Tested with [io.js](https://iojs.org) v2.2.1.
+Tested (Windows and Ubuntu) with [io.js](https://iojs.org) v2.2.1.
+
+On Ubuntu make sure a proper version is selected: nvm use iojs-v2.2.1
 
 ### Install
 
