@@ -42,4 +42,4 @@ download(url, 'hello.jpg');
 
 * hello.jpg
 
-![hello.jpg](https://github.com/gena/ee-runner/hello.jpg "Result")
+![hello.jpg](https://github.com/gena/ee-runner/master/hello.jpg "Result")
