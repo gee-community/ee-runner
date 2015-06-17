@@ -58,6 +58,8 @@ def main():
       'grant_type': 'authorization_code'
   }
 
+  print(urllib.urlencode(token_request_params))
+
   refresh_token = None
   try:
     response = urllib2.urlopen('https://accounts.google.com/o/oauth2/token',

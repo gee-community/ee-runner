@@ -1,9 +1,15 @@
 // include closure
-var path = require('path');
-var closureBasePath = path.join(__dirname, '/ext/closure-library/closure/goog/');
-var goog = require('closure').Closure({CLOSURE_BASE_PATH: closureBasePath});
+var goog = require('closure').Closure({CLOSURE_BASE_PATH: 'ext\\closure-library\\closure\\goog\\'});
 require('./ext/closure-library/closure/goog/bootstrap/nodejs')
 
+/*
+var path = require('path');
+var closureBasePath = path.join(__dirname, '/ext/closure-library/closure/goog/');
+print(closureBasePath)
+var goog = require('closure').Closure({CLOSURE_BASE_PATH: closureBasePath});
+
+*/
+ 
 // include fixed version of XMLHttpRequest (supports sync calls)
 global.XMLHttpRequest = require('./ext/xmlhttprequest-sync/lib/XMLHttpRequest').XMLHttpRequest;
 
@@ -37,40 +43,28 @@ global.print = function(arg) { console.log(arg); }
 global.Map.addLayer = function(arg) {}
 global.Map.addCenterObject = function(arg) {}
 
-// setup Oauth2
-var google = require('googleapis');
-var OAuth2 = google.auth.OAuth2;
+// setup authorization
+gee = require('./authenticate')
 
-// read Oauth2 info
-// var home = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
-// var path = home + '/.config/earthengine/credentials';
-var fs = require('fs')
+// initialize google earth engine and call script
+gee.initialize(function() {
+  // parse command line
+  var cmd = require('commander')
 
-var obj = JSON.parse(fs.readFileSync('config/authinfo.json', 'utf8'));
+  var cmd = require('commander')
 
-var CLIENT_ID = obj.client_id;
-var CLIENT_SECRET = obj.client_secret;
-var REDIRECT_URI = obj.redirect_uri;
+  cmd
+    .version('0.0.1')
+    .description('Google Earth Engine Playground code runner')
+    .usage('ee-runner <path>')
+    .parse(process.argv);
 
-var obj = JSON.parse(fs.readFileSync('config/refresh_token.json', 'utf8'));
-var REFRESH_TOKEN = obj.refresh_token;
-    
-// authorize
-var oauth2Client = new OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
-oauth2Client.setCredentials({refresh_token: REFRESH_TOKEN});
+  if(cmd.args.length != 1) {
+    cmd.help();
+    process.exit();
+  }
 
-oauth2Client.refreshAccessToken(function(err, tokens) {
-  // your access_token is now refreshed and stored in oauth2Client
-  // store these new tokens in a safe place (e.g. database)
-
-  var ACCESS_TOKEN = tokens['access_token'];
-
-  ee.data.authToken_ = 'Bearer ' + ACCESS_TOKEN;
-  ee.data.authClientId_ = CLIENT_ID
-  ee.data.authScopes_ = [ee.data.AUTH_SCOPE_]
-  ee.data.DEFAULT_API_BASE_URL_ = "https://earthengine.googleapis.com/api"
-
-  ee.initialize(ee.data.DEFAULT_API_BASE_URL_);
-
-  require('./playground.js')
+  var path = cmd.args[0]
+ 
+  require('./' + path)
 });
