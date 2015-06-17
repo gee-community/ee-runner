@@ -11,11 +11,10 @@ initialize = function(onsuccess) {
   var fs = require('fs')
 
   var AUTH_FILE = 'config/authinfo.json';
-  var REFRESH_TOKEN_FILE = 'config/refresh_token.json';
 
-  // TODO: store in ~
-  // var home = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
-  // var path = home + '/.config/earthengine/credentials';
+  var home = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+  var REFRESH_TOKEN_FILE = home + '/.config/earthengine/credentials';
+  //var REFRESH_TOKEN_FILE = 'config/refresh_token.json';
 
   var o = JSON.parse(fs.readFileSync(AUTH_FILE, 'utf8'));
   var client = new OAuth2(o.client_id, o.client_secret, o.redirect_uri);
@@ -77,7 +76,6 @@ initialize = function(onsuccess) {
 
     // write refresh_token to config file
     fs.writeFileSync(REFRESH_TOKEN_FILE, JSON.stringify({ refresh_token: refresh_token }), 'utf8');
-    process.exit()
   }
 
   var o2 = JSON.parse(fs.readFileSync(REFRESH_TOKEN_FILE, 'utf8'));
