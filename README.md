@@ -30,8 +30,6 @@ var info = image.getInfo();
 var date = info.properties['DATE_ACQUIRED']
 print('First image in LANDSAT 8 TOA collection was aquired on ' + date);
 
-print(info);
-
 print('Downloading thumbnail ...');
 
 var url = image
@@ -39,5 +37,6 @@ var url = image
   .getThumbURL({dimensions:'1024x1024', format: 'jpg'});
 
 download(url, 'hello.jpg');
+
 ```
 
