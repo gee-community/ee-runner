@@ -47,6 +47,8 @@ var request = require('request');
 global.print = function(arg) { console.log(arg); }
 global.Map.addLayer = function(arg) {}
 global.Map.addCenterObject = function(arg) {}
+global.Map.getBounds = function(arg) {}
+
 global.download = function(url, path) {
   var finished = false;
 
@@ -71,8 +73,6 @@ gee = require('./authenticate')
 // initialize google earth engine and call script
 gee.initialize(function() {
   // parse command line
-  var cmd = require('commander')
-
   var cmd = require('commander')
 
   cmd
