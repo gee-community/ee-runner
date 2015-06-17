@@ -1,5 +1,7 @@
 // include closure
-var goog = require('closure').Closure({CLOSURE_BASE_PATH: 'ext/closure-library/closure/goog' + require('path').sep});
+var path = require('path');
+var closureBasePath = path.join(__dirname, '/ext/closure-library/closure/goog' + path.sep);
+var goog = require('closure').Closure({CLOSURE_BASE_PATH: closureBasePath});
 require('./ext/closure-library/closure/goog/bootstrap/nodejs')
 
 /*
@@ -84,7 +86,7 @@ gee.initialize(function() {
     process.exit();
   }
 
-  var path = cmd.args[0]
+  var scriptName = cmd.args[0]
  
-  require('./' + path)
+  require(path.join(process.cwd(), scriptName))
 });

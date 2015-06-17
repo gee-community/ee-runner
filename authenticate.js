@@ -1,5 +1,7 @@
-var goog = require('closure').Closure({CLOSURE_BASE_PATH: 'ext/closure-library/closure/goog' + require('path').sep});
-require('./ext/closure-library/closure/goog/bootstrap/nodejs')
+var path = require('path');
+var closureBasePath = path.join(__dirname, '/ext/closure-library/closure/goog' + path.sep);
+var goog = require('closure').Closure({CLOSURE_BASE_PATH: closureBasePath});
+
 goog.require('goog.Uri');
 
 goog.provide('gee');
@@ -10,7 +12,7 @@ initialize = function(onsuccess) {
   var OAuth2 = google.auth.OAuth2;
   var fs = require('fs')
 
-  var AUTH_FILE = 'config/authinfo.json';
+  var AUTH_FILE = path.join(__dirname, 'config/authinfo.json');
 
   var home = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
   var REFRESH_TOKEN_FILE = home + '/.config/earthengine/credentials';
