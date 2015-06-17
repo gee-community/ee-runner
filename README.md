@@ -4,21 +4,21 @@ Command line runner of [Google Earth Engine Playground](https://ee-api.appspot.c
 
 Tested with [io.js](https://iojs.org) v2.2.1.
 
-Install:
+### Install
 
 * Download and install [io.js](https://iojs.org).
 * Clone or download this repository.
 * Run: npm install
 
-Usage:
+### Usage
 * node ee-runner.js \<playground script file\>
 
-
-For example:
+### Example
 
 * node ee-runner.js hello.js
 
 > First LANDSAT 8 TOA image is aquired on 2013-09-26
+
 > Downloading thumbnail ...
 
 * cat hello.js
