@@ -17,9 +17,10 @@ Tested with [io.js](https://iojs.org) v2.2.1.
 
 * node ee-runner.js hello.js
 
-> First LANDSAT 8 TOA image is aquired on 2013-09-26
-
-> Downloading thumbnail ...
+```
+First LANDSAT 8 TOA image is aquired on 2013-09-26
+Downloading thumbnail ...
+```
 
 * cat hello.js
 
