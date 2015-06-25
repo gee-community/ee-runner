@@ -20,7 +20,7 @@ On Ubuntu make sure a proper version is selected: nvm use iojs-v2.2.1
 * node ee-runner.js hello.js
 
 ```
-First LANDSAT 8 TOA image is aquired on 2013-09-26
+First image in LANDSAT 8 TOA collection was aquired on 2013-09-26
 Downloading thumbnail ...
 ```
 
