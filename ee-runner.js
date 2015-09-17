@@ -44,10 +44,16 @@ var fs = require('fs')
 var request = require('request');
 
 // replacements used in playground code
-global.print = function(arg) { console.log(arg); }
+global.print = function(arg) { if(arg) { console.log(arg); } }
+global.Map = function(arg) {}
 global.Map.addLayer = function(arg) {}
 global.Map.addCenterObject = function(arg) {}
 global.Map.getBounds = function(arg) {}
+global.Map.getCenter = function(arg) {}
+global.Map.centerObject = function(arg) {}
+global.Chart = function(arg) {}
+global.Chart.image = function(arg) {}
+global.Chart.image.histogram = function(arg) {}
 
 global.download = function(url, path) {
   var finished = false;
@@ -67,6 +73,27 @@ global.download = function(url, path) {
   }
 }
 
+global.validate_zip = function(path) {
+  var admZip = require('adm-zip')
+  var zip = new admZip(path);
+  var zipEntries = zip.getEntries();
+
+  console.log(zipEntries.length)
+
+  for (var i = 0; i < zipEntries.length; i++) {
+    console.log('Validating: ' + zipEntries[i]['entryName'] + ' ...');
+    zip.readAsText(zipEntries[i])
+  }
+}
+
+global.save = function(text, path) {
+  fs.writeFile(path, text, function(err) {
+    if(err) {
+      console.log(err);
+    }
+  }); 
+}
+
 // setup authorization
 gee = require('./authenticate')
 
@@ -81,12 +108,15 @@ gee.initialize(function() {
     .usage('ee-runner <path>')
     .parse(process.argv);
 
-  if(cmd.args.length != 1) {
+  if(cmd.args.length < 1) {
     cmd.help();
     process.exit();
   }
 
-  var scriptName = cmd.args[0]
- 
-  require(path.join(process.cwd(), scriptName))
+  global.args = cmd.args;
+  var scriptName = cmd.args[0];
+  var scriptPath = path.join(process.cwd(), scriptName); 
+
+  console.log('Running script: ' + scriptPath);
+  require(scriptPath);
 });
