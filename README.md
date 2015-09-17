@@ -10,7 +10,12 @@ On Ubuntu make sure a proper version is selected: nvm use iojs-v2.2.1
 
 * Download and install [io.js](https://iojs.org).
 * Clone or download this repository.
-* Run: npm install
+* Inside Repository
+  * Update Sub modules ```git submodule update --init```
+  * Run: npm install
+
+You may have to remove any previous and no longer valid tokens, for example having played with ee-python.
+```rm ~/.config/earthengine/credentials```.
 
 ### Usage
 * node ee-runner.js \<playground script file\>
