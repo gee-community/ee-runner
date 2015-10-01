@@ -17,6 +17,6 @@
     "jsonpointer": "2.0.x",
     "xtend": "4.0.x",
     "jsdom" : "3.x.x",
-    "adm-zip" : "0.4.7"
+    "jszip" : "2.x.x"
   }
 }

@@ -74,16 +74,13 @@ global.download = function(url, path) {
 }
 
 global.validate_zip = function(path) {
-  var admZip = require('adm-zip')
-  var zip = new admZip(path);
-  var zipEntries = zip.getEntries();
+  var JSZip = require("jszip");
 
-  console.log(zipEntries.length)
-
-  for (var i = 0; i < zipEntries.length; i++) {
-    console.log('Validating: ' + zipEntries[i]['entryName'] + ' ...');
-    zip.readAsText(zipEntries[i])
-  }
+  // read a zip file
+  fs.readFile(path, function(err, data) {
+    if (err) throw err;
+    var zip = new JSZip(data);
+  });
 }
 
 global.save = function(text, path) {
