@@ -76,11 +76,18 @@ global.download = function(url, path) {
 global.validate_zip = function(path) {
   var JSZip = require("jszip");
 
+  var finished = false;
+
   // read a zip file
   fs.readFile(path, function(err, data) {
     if (err) throw err;
     var zip = new JSZip(data);
+    finished = true;
   });
+
+  while(!finished) {
+     require('deasync').sleep(100);
+  }
 }
 
 global.save = function(text, path) {
