@@ -2,17 +2,11 @@
 
 Command line runner of [Google Earth Engine Playground](https://ee-api.appspot.com/) scripts using Node.js.
 
-Tested (Windows and Ubuntu) with [io.js](https://iojs.org) v2.2.1.
-
-On Ubuntu make sure a proper version is selected: nvm use iojs-v2.2.1
-
 ### Install
 
-* Download and install [io.js](https://iojs.org).
 * Clone or download this repository.
 * Inside Repository
-  * Update Sub modules ```git submodule update --init```
-  * Run: npm install
+  * Run: npm run init
 
 You may have to remove any previous and no longer valid tokens, for example having played with ee-python.
 ```rm ~/.config/earthengine/credentials```.

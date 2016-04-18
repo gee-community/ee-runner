@@ -11,4 +11,3 @@ var url = image
   .getThumbURL({dimensions:'1024x1024', format: 'jpg'});
 
 download(url, 'hello.jpg');
-
