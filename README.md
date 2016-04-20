@@ -22,14 +22,14 @@ You may have to remove any previous and no longer valid tokens, for example havi
 
 ### Example
 
-* node ee-runner.js hello.js
+* node ee-runner.js examples/hello.js
 
 ```
 First image in LANDSAT 8 TOA collection was aquired on 2013-09-26
 Downloading thumbnail ...
 ```
 
-* cat hello.js
+* cat examples/hello.js
 
 ```javascript
 var image = new ee.Image(new ee.ImageCollection('LANDSAT/LC8_L1T_TOA').first());
@@ -50,4 +50,4 @@ download(url, 'hello.jpg');
 
 * hello.jpg
 
-![hello.jpg](https://github.com/gena/ee-runner/blob/master/hello.jpg?raw=true "Result")
+![hello.jpg](https://github.com/gena/ee-runner/blob/master/examples/hello.jpg?raw=true "Result")
