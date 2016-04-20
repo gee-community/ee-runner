@@ -1,1 +1,0 @@
-validate_zip('1.zip')
