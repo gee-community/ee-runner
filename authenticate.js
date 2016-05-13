@@ -21,6 +21,21 @@ initialize = function(onsuccess) {
   var o = JSON.parse(fs.readFileSync(AUTH_FILE, 'utf8'));
   var client = new OAuth2(o.client_id, o.client_secret, o.redirect_uri);
 
+  function init() {
+    var o2 = JSON.parse(fs.readFileSync(REFRESH_TOKEN_FILE, 'utf8'));
+    client.setCredentials({refresh_token: o2.refresh_token});
+
+    client.refreshAccessToken(function(err, tokens) {
+      ee.data.authToken_ = 'Bearer ' + tokens['access_token'];
+      ee.data.authClientId_ = o.cliet_id
+      ee.data.authScopes_ = [ee.data.AUTH_SCOPE_]
+      ee.data.DEFAULT_API_BASE_URL_ = "https://earthengine.googleapis.com/api"
+      ee.initialize(ee.data.DEFAULT_API_BASE_URL_);
+
+      onsuccess();
+    });
+  }
+
   // generate refresh token
   if (!fs.existsSync(REFRESH_TOKEN_FILE)) {
     var toQueryData = function(params) {
@@ -73,29 +88,17 @@ initialize = function(onsuccess) {
         return console.error('upload failed:', err);
       }
       refresh_token = JSON.parse(body).refresh_token;
+
+      require('mkdirp').sync(require('path').dirname(REFRESH_TOKEN_FILE));
+
+      // write refresh_token to config file
+      fs.writeFileSync(REFRESH_TOKEN_FILE, JSON.stringify({ refresh_token: refresh_token }), 'utf8');
+      
+      init();
     });
-
-    // wait for results
-    while(refresh_token == null) { require('deasync').sleep(100); }
-
-    require('mkdirp').sync(require('path').dirname(REFRESH_TOKEN_FILE));
-
-    // write refresh_token to config file
-    fs.writeFileSync(REFRESH_TOKEN_FILE, JSON.stringify({ refresh_token: refresh_token }), 'utf8');
+  } else {
+    init();
   }
-
-  var o2 = JSON.parse(fs.readFileSync(REFRESH_TOKEN_FILE, 'utf8'));
-  client.setCredentials({refresh_token: o2.refresh_token});
-
-  client.refreshAccessToken(function(err, tokens) {
-    ee.data.authToken_ = 'Bearer ' + tokens['access_token'];
-    ee.data.authClientId_ = o.cliet_id
-    ee.data.authScopes_ = [ee.data.AUTH_SCOPE_]
-    ee.data.DEFAULT_API_BASE_URL_ = "https://earthengine.googleapis.com/api"
-    ee.initialize(ee.data.DEFAULT_API_BASE_URL_);
-
-    onsuccess();
-  });
 }
 
 module.exports.initialize = initialize

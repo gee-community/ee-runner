@@ -11,7 +11,6 @@
     "googleapis" : "2.x.x",
     "mkdirp" : "0.5.1",
     "delayed-stream" : "1.x.x",
-    "deasync" : "x.x.x",
     "generate-object-property": "1.0.x",
     "generate-function": "2.0.x",
     "jsonpointer": "2.0.x",
