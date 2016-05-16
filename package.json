@@ -10,6 +10,7 @@
     "opener" : "1.4.1",
     "googleapis" : "2.x.x",
     "mkdirp" : "0.5.1",
+    "deasync": "x.x.x",
     "delayed-stream" : "1.x.x",
     "generate-object-property": "1.0.x",
     "generate-function": "2.0.x",
