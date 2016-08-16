@@ -56,6 +56,20 @@ global.Chart = function(arg) {}
 global.Chart.image = function(arg) {}
 global.Chart.image.histogram = function(arg) {}
 
+
+// First, checks if it isn't implemented yet.
+if (!global.String.prototype.format) {
+  global.String.prototype.format = function() {
+    var args = arguments;
+    return this.replace(/{(\d+)}/g, function(match, number) { 
+      return typeof args[number] != 'undefined'
+        ? args[number]
+        : match
+      ;
+    });
+  };
+}
+
 global.download = function(url, path, onsuccess) {
   var finished = false;
 
@@ -69,7 +83,13 @@ global.download = function(url, path, onsuccess) {
     if(onsuccess) {
       onsuccess(url, path)
     }
+
+    finished = true;
   });
+
+  while(!finished) {		
+     require('deasync').sleep(100);		
+  }
 }
 
 global.validate_zip = function(path, onsuccess) {
@@ -83,7 +103,13 @@ global.validate_zip = function(path, onsuccess) {
     var zip = new JSZip(data);
 
     onsuccess(path)
+
+    finished = true;
   });
+
+  while(!finished) {		
+     require('deasync').sleep(100);		
+  }
 }
 
 global.save = function(text, path) {
