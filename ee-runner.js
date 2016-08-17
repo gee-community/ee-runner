@@ -51,11 +51,26 @@ global.Map.addCenterObject = function(arg) {}
 global.Map.getBounds = function(arg) {}
 global.Map.getCenter = function(arg) {}
 global.Map.centerObject = function(arg) {}
+global.Map.setOptions = function(arg) {}
 global.Chart = function(arg) {}
 global.Chart.image = function(arg) {}
 global.Chart.image.histogram = function(arg) {}
 
-global.download = function(url, path) {
+
+// First, checks if it isn't implemented yet.
+if (!global.String.prototype.format) {
+  global.String.prototype.format = function() {
+    var args = arguments;
+    return this.replace(/{(\d+)}/g, function(match, number) { 
+      return typeof args[number] != 'undefined'
+        ? args[number]
+        : match
+      ;
+    });
+  };
+}
+
+global.download = function(url, path, onsuccess) {
   var finished = false;
 
   var downloadAsync = function(uri, filename, callback){
@@ -65,15 +80,19 @@ global.download = function(url, path) {
   };
 
   downloadAsync(url, path, function(){
+    if(onsuccess) {
+      onsuccess(url, path)
+    }
+
     finished = true;
   });
 
-  while(!finished) {
-     require('deasync').sleep(100);
+  while(!finished) {		
+     require('deasync').sleep(100);		
   }
 }
 
-global.validate_zip = function(path) {
+global.validate_zip = function(path, onsuccess) {
   var JSZip = require("jszip");
 
   var finished = false;
@@ -82,11 +101,14 @@ global.validate_zip = function(path) {
   fs.readFile(path, function(err, data) {
     if (err) throw err;
     var zip = new JSZip(data);
+
+    onsuccess(path)
+
     finished = true;
   });
 
-  while(!finished) {
-     require('deasync').sleep(100);
+  while(!finished) {		
+     require('deasync').sleep(100);		
   }
 }
 

@@ -26,6 +26,21 @@ initialize = function(onsuccess) {
 
 
 
+  function init() {
+    var o2 = JSON.parse(fs.readFileSync(REFRESH_TOKEN_FILE, 'utf8'));
+    client.setCredentials({refresh_token: o2.refresh_token});
+
+    client.refreshAccessToken(function(err, tokens) {
+      ee.data.authToken_ = 'Bearer ' + tokens['access_token'];
+      ee.data.authClientId_ = o.cliet_id
+      ee.data.authScopes_ = [ee.data.AUTH_SCOPE_]
+      ee.data.DEFAULT_API_BASE_URL_ = "https://earthengine.googleapis.com/api"
+      ee.initialize(ee.data.DEFAULT_API_BASE_URL_);
+
+      onsuccess();
+    });
+  }
+
   // generate refresh token
   if (!fs.existsSync(REFRESH_TOKEN_FILE)) {
     var toQueryData = function(params) {
@@ -82,31 +97,13 @@ initialize = function(onsuccess) {
 
         // write refresh_token to config file
         fs.writeFileSync(REFRESH_TOKEN_FILE, JSON.stringify({ refresh_token: refresh_token }), 'utf8');
-
-        onReady(onsuccess);
+        
+        init();
       });
     });
-
   } else {
-    onReady(onsuccess);
+    init();
   }
-
-
-}
-
-function onReady(onsuccess) {
-  var o2 = JSON.parse(fs.readFileSync(REFRESH_TOKEN_FILE, 'utf8'));
-  client.setCredentials({refresh_token: o2.refresh_token});
-
-  client.refreshAccessToken(function(err, tokens) {
-    ee.data.authToken_ = 'Bearer ' + tokens['access_token'];
-    ee.data.authClientId_ = o.cliet_id
-    ee.data.authScopes_ = [ee.data.AUTH_SCOPE_]
-    ee.data.DEFAULT_API_BASE_URL_ = "https://earthengine.googleapis.com/api"
-    ee.initialize(ee.data.DEFAULT_API_BASE_URL_);
-
-    onsuccess();
-  });
 }
 
 function readKey(callback) {

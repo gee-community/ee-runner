@@ -10,4 +10,6 @@ var url = image
   .visualize({bands:['B6','B5','B3'], gamma: 1.5})
   .getThumbURL({dimensions:'1024x1024', format: 'jpg'});
 
+print(url)
+
 download(url, 'hello.jpg');

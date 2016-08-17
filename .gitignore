@@ -1,2 +1,3 @@
 /config/refresh_token.json
 node_modules
+.vscode
