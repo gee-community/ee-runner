@@ -11,7 +11,7 @@ print(closureBasePath)
 var goog = require('closure').Closure({CLOSURE_BASE_PATH: closureBasePath});
 
 */
- 
+
 // include fixed version of XMLHttpRequest (supports sync calls)
 global.XMLHttpRequest = require('./ext/xmlhttprequest-sync/lib/XMLHttpRequest').XMLHttpRequest;
 
@@ -117,7 +117,7 @@ global.save = function(text, path) {
     if(err) {
       console.log(err);
     }
-  }); 
+  });
 }
 
 // setup authorization
@@ -141,7 +141,7 @@ gee.initialize(function() {
 
   global.args = cmd.args;
   var scriptName = cmd.args[0];
-  var scriptPath = path.join(process.cwd(), scriptName); 
+  var scriptPath = path.join(process.cwd(), scriptName);
 
   console.log('Running script: ' + scriptPath);
   require(scriptPath);

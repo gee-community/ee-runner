@@ -13,4 +13,3 @@ var url = image
 print(url)
 
 download(url, 'hello.jpg');
-
