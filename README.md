@@ -4,7 +4,7 @@ Command line runner of [Google Earth Engine Playground](https://ee-api.appspot.c
 
 ### Install
 
-* Clone or download this repository.
+* Clone this repository.
 * Inside Repository
   * Run: npm run init
 
