@@ -2,7 +2,24 @@
 
 Command line runner of [Google Earth Engine Playground](https://ee-api.appspot.com/) scripts using Node.js.
 
-### Install
+### Install as a package
+
+* npm install ee-runner
+
+
+* in your scripts, use:
+
+```javascript
+require("ee-runner")
+
+gee.initialize(function() {
+  // ... your Google Earth Engine code comes here ...
+})
+
+```
+
+
+### Install as a command-line tool from GitHub
 
 * Clone or download this repository.
 * Inside Repository

@@ -2,6 +2,9 @@
   "name": "ee-runner",
   "description": "Runs JavaScript code from Google Earth Engine Playground using node.js",
   "author": "Gennadii Donchyts <gennadiy.donchyts@gmail.com>",
+  "license": "MIT",
+  "version": "0.0.5",
+  "repository": "https://github.com/gena/ee-runner",
   "scripts" : {
     "init" : "npm install && git submodule update --init"
   },
@@ -13,7 +16,7 @@
     "opener" : "1.4.1",
     "googleapis" : "2.x.x",
     "mkdirp" : "0.5.1",
-    "deasync": "x.x.x",
+    "deasync": "0.1.6",
     "delayed-stream" : "1.x.x",
     "generate-object-property": "1.0.x",
     "generate-function": "2.0.x",
