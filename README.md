@@ -21,7 +21,7 @@ gee.initialize(function() {
 
 ### Install as a command-line tool from GitHub
 
-* Clone or download this repository.
+* Clone this repository.
 * Inside Repository
   * Run: npm run init
 
