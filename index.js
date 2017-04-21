@@ -58,6 +58,7 @@ global.Map.setOptions = function(arg) {}
 global.Chart = function(arg) {}
 global.Chart.image = function(arg) {}
 global.Chart.image.histogram = function(arg) {}
+global.commandLine = true
 
 
 // First, checks if it isn't implemented yet.
