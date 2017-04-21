@@ -4,6 +4,3 @@
 [submodule "ext/xmlhttprequest-sync"]
 	path = ext/xmlhttprequest-sync
 	url = git://github.com/gena/node-XMLHttpRequest
-[submodule "ext/earthengine-api"]
-	path = ext/earthengine-api
-	url = git://github.com/google/earthengine-api.git
