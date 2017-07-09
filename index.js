@@ -91,9 +91,9 @@ global.download = function(url, path, onsuccess) {
     finished = true;
   });
 
-  // while(!finished) {		
-  //   require('deasync').sleep(100);		
-  //}
+  while(!finished) {		
+     require('deasync').sleep(100);		
+  }
 }
 
 global.validate_zip = function(path, onsuccess) {
@@ -111,9 +111,9 @@ global.validate_zip = function(path, onsuccess) {
     finished = true;
   });
 
-  //while(!finished) {		
-  //   require('deasync').sleep(100);		
-  //}
+  while(!finished) {		
+     require('deasync').sleep(100);		
+  }
 }
 
 global.save = function(text, path) {
