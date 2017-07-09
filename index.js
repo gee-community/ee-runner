@@ -25,7 +25,6 @@ require('./ext/earthengine-api/javascript/src/types')
 require('./ext/earthengine-api/javascript/src/function')
 require('./ext/earthengine-api/javascript/src/apifunction')
 require('./ext/earthengine-api/javascript/src/element')
-require('./ext/earthengine-api/javascript/src/arguments')
 require('./ext/earthengine-api/javascript/src/filter')
 require('./ext/earthengine-api/javascript/src/collection')
 require('./ext/earthengine-api/javascript/src/number')
@@ -91,9 +90,9 @@ global.download = function(url, path, onsuccess) {
     finished = true;
   });
 
-  while(!finished) {		
-     require('deasync').sleep(100);		
-  }
+  // while(!finished) {		
+  //   require('deasync').sleep(100);		
+  //}
 }
 
 global.validate_zip = function(path, onsuccess) {
@@ -111,9 +110,9 @@ global.validate_zip = function(path, onsuccess) {
     finished = true;
   });
 
-  while(!finished) {		
-     require('deasync').sleep(100);		
-  }
+  //while(!finished) {		
+  //   require('deasync').sleep(100);		
+  //}
 }
 
 global.save = function(text, path) {
