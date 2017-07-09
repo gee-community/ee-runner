@@ -1,6 +1,8 @@
 var path = require('path');
 
-require('./index.js')
+var pathIndex = path.join(__dirname, 'index.js');
+
+require(pathIndex)
 
 
 // initialize google earth engine and call script
