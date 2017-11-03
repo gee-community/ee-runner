@@ -34,8 +34,19 @@ initialize = function (onsuccess) {
         });
     }
 
+    // check if refresh token exists
+    var isEmptyRefreshToken = true;
+    if(fs.existsSync(REFRESH_TOKEN_FILE)) {
+        console.log('file exists')
+        var o2 = JSON.parse(fs.readFileSync(REFRESH_TOKEN_FILE, 'utf8'));
+        if('refresh_token' in Object.keys(o2)) {
+            console.log('key exists')
+            isEmptyRefreshToken = false;
+        }
+    }
+
     // generate refresh token
-    if (!fs.existsSync(REFRESH_TOKEN_FILE)) {
+    if (isEmptyRefreshToken) {
         var toQueryData = function (params) {
             var queryData = new goog.Uri.QueryData();
             for (var item in params) {
