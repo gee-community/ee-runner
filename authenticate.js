@@ -20,27 +20,24 @@ initialize = function (onsuccess) {
     var client = new google.auth.OAuth2(o.client_id, o.client_secret, o.redirect_uri);
 
     function init() {
-        var o2 = JSON.parse(fs.readFileSync(REFRESH_TOKEN_FILE, 'utf8'));
-        client.setCredentials({refresh_token: o2.refresh_token});
+        var refresh_token = JSON.parse(fs.readFileSync(REFRESH_TOKEN_FILE, 'utf8')).refresh_token;
+
+        client.setCredentials({refresh_token: refresh_token});
 
         client.refreshAccessToken(function (err, tokens) {
-            ee.data.authToken_ = 'Bearer ' + tokens['access_token'];
+            ee.data.authToken_ = 'Bearer ' + tokens.access_token;
             ee.data.authClientId_ = o.cliet_id;
             ee.data.authScopes_ = [ee.data.AUTH_SCOPE_];
             ee.data.DEFAULT_API_BASE_URL_ = "https://earthengine.googleapis.com/api";
-            ee.initialize(ee.data.DEFAULT_API_BASE_URL_);
-
-            onsuccess();
+            ee.initialize(ee.data.DEFAULT_API_BASE_URL_, null, onsuccess);
         });
     }
 
     // check if refresh token exists
     var isEmptyRefreshToken = true;
     if(fs.existsSync(REFRESH_TOKEN_FILE)) {
-        console.log('file exists')
         var o2 = JSON.parse(fs.readFileSync(REFRESH_TOKEN_FILE, 'utf8'));
-        if('refresh_token' in Object.keys(o2)) {
-            console.log('key exists')
+        if(o2.hasOwnProperty('refresh_token')) {
             isEmptyRefreshToken = false;
         }
     }
@@ -76,7 +73,15 @@ initialize = function (onsuccess) {
 
         // ask user to enter authorization code
         console.log('Please enter authorization code: ');
+
+        var done = false
         readKey(function (auth_code) {
+            if(done) {
+              return
+            }
+
+            done = true
+
             console.log('Entered code: ' + auth_code);
 
             // request refresh token
