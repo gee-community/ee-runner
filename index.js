@@ -13,7 +13,7 @@ var goog = require('closure').Closure({CLOSURE_BASE_PATH: closureBasePath});
 */
 
 // include fixed version of XMLHttpRequest (supports sync calls)
-global.XMLHttpRequest = require('XMLHttpRequest').XMLHttpRequest;
+global.XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 // global.XMLHttpRequest = require('./ext/xmlhttprequest-sync/lib/XMLHttpRequest').XMLHttpRequest;
 
 // include GEE sources
