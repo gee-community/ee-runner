@@ -29,7 +29,10 @@ initialize = function (onsuccess) {
             ee.data.authClientId_ = o.cliet_id;
             ee.data.authScopes_ = [ee.data.AUTH_SCOPE_];
             ee.data.DEFAULT_API_BASE_URL_ = "https://earthengine.googleapis.com/api";
-            ee.initialize(ee.data.DEFAULT_API_BASE_URL_, null, onsuccess);
+            ee.initialize(ee.data.DEFAULT_API_BASE_URL_, null, () => { 
+                onsuccess(); 
+                process.exit(1);
+            });
         });
     }
 

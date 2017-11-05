@@ -3,7 +3,7 @@
   "description": "Runs JavaScript code from Google Earth Engine Playground using node.js",
   "author": "Gennadii Donchyts <gennadiy.donchyts@gmail.com>",
   "license": "MIT",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "repository": "https://github.com/gena/ee-runner",
   "scripts": {
     "init": "npm install && git submodule update --init"
