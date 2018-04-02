@@ -1,29 +1,19 @@
 {
   "name": "ee-runner",
-  "description": "Runs JavaScript code from Google Earth Engine Playground using node.js",
+  "description": "Node.js cli interface for Google Earth Engine JS scripts",
   "author": "Gennadii Donchyts <gennadiy.donchyts@gmail.com>",
   "license": "MIT",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "repository": "https://github.com/gena/ee-runner",
-  "scripts": {
-    "init": "npm install && git submodule update --init"
-  },
+  "main": "index.js",
   "dependencies": {
-    "closure": "1.x.x",
-    "commander": "2.8.x",
-    "request": "2.58.x",
-    "xmlhttprequest": "1.x.x",
+    "@google/earthengine": "^0.1.136-prerelease",
+    "commander": "^2.15.1",
+    "google-closure-library": "^20180204.0.0",
     "deasync": "0.1.x",
-    "readline-sync": "1.2.19",
-    "opener": "1.4.1",
-    "googleapis": "2.x.x",
     "mkdirp": "0.5.1",
-    "delayed-stream": "1.x.x",
-    "generate-object-property": "1.0.x",
-    "generate-function": "2.0.x",
-    "jsdom": "11.x.x",
-    "jsonpointer": "2.0.x",
-    "jszip": "2.x.x",
-    "xtend": "4.0.x"
+    "opener": "1.4.1",
+    "request": "2.58.x",
+    "jszip": "2.x.x"
   }
 }
