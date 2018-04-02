@@ -3,10 +3,6 @@ var fs = require('fs');
 var ee = require('@google/earthengine');
 var google = require('googleapis');
 
-require('google-closure-library');
-
-goog.require('goog.Uri');
-
 // constants
 var HOME = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 var AUTH_FILE = path.join(__dirname, 'config/authinfo.json');
@@ -18,6 +14,7 @@ initialize = function (onsuccess) {
 
     function init() {
         var o2 = JSON.parse(fs.readFileSync(REFRESH_TOKEN_FILE, 'utf8'));
+
         client.setCredentials({refresh_token: o2.refresh_token});
 
         client.refreshAccessToken(function (err, tokens) {
@@ -28,19 +25,13 @@ initialize = function (onsuccess) {
             ee.initialize(ee.data.DEFAULT_API_BASE_URL_);
 
             onsuccess();
+
+            process.exit();
         });
     }
 
     // generate refresh token
     if (!fs.existsSync(REFRESH_TOKEN_FILE)) {
-        var toQueryData = function (params) {
-            var queryData = new goog.Uri.QueryData();
-            for (var item in params) {
-                queryData.set(item, params[item]);
-            }
-            return queryData;
-        };
-
         var params = {
             'scope': 'https://www.googleapis.com/auth/earthengine.readonly',
             'redirect_uri': o.redirect_uri,
@@ -48,7 +39,8 @@ initialize = function (onsuccess) {
             'client_id': o.client_id
         };
 
-        var uri = 'https://accounts.google.com/o/oauth2/auth?' + toQueryData(params).toString();
+        var querystring = require('querystring');
+        var uri = 'https://accounts.google.com/o/oauth2/auth?' + querystring.stringify(params);
 
         //goog.Uri.create('https', null, 'accounts.google.com', null, '/o/oauth2/auth', toQueryData(params));
 
@@ -73,7 +65,8 @@ initialize = function (onsuccess) {
                 'redirect_uri': o.redirect_uri,
                 'grant_type': 'authorization_code'
             };
-            console.log('https://accounts.google.com/o/oauth2/token?' + toQueryData(params).toString());
+
+            console.log('https://accounts.google.com/o/oauth2/token?' + querystring.stringify(params));
 
             var refresh_token = null;
             var request = require('request');

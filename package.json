@@ -9,7 +9,6 @@
   "dependencies": {
     "@google/earthengine": "^0.1.136-prerelease",
     "commander": "^2.15.1",
-    "google-closure-library": "^20180204.0.0",
     "deasync": "0.1.x",
     "mkdirp": "0.5.1",
     "opener": "1.4.1",
