@@ -8,7 +8,12 @@ var HOME = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 var AUTH_FILE = path.join(__dirname, 'config/authinfo.json');
 var REFRESH_TOKEN_FILE = HOME + '/.config/earthengine/credentials';
 
-initialize = function (onsuccess) {
+initialize = function (onsuccess, auth) {
+    if(auth) {
+      console.log('Resetting authentication ...')
+      fs.unlinkSync(REFRESH_TOKEN_FILE);
+    }
+
     var o = JSON.parse(fs.readFileSync(AUTH_FILE, 'utf8'));
     var client = new google.auth.OAuth2(o.client_id, o.client_secret, o.redirect_uri);
 

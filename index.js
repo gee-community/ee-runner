@@ -20,7 +20,6 @@ global.Chart.image = function(arg) {}
 global.Chart.image.histogram = function(arg) {}
 global.commandLine = true
 
-
 // First, checks if it isn't implemented yet.
 if (!global.String.prototype.format) {
   global.String.prototype.format = function() {
