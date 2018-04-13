@@ -20,8 +20,9 @@ initialize = function (onsuccess) {
         client.refreshAccessToken(function (err, tokens) {
             ee.data.authToken_ = 'Bearer ' + tokens['access_token'];
             ee.data.authClientId_ = o.cliet_id;
-            ee.data.authScopes_ = [ee.data.AUTH_SCOPE_];
+            ee.data.authScopes_ = [ee.data.AUTH_SCOPE_, 'https://www.googleapis.com/auth/devstorage.read_write'];
             ee.data.DEFAULT_API_BASE_URL_ = "https://earthengine.googleapis.com/api";
+
             ee.initialize(ee.data.DEFAULT_API_BASE_URL_);
 
             onsuccess();
@@ -33,7 +34,7 @@ initialize = function (onsuccess) {
     // generate refresh token
     if (!fs.existsSync(REFRESH_TOKEN_FILE)) {
         var params = {
-            'scope': 'https://www.googleapis.com/auth/earthengine.readonly',
+            'scope': 'https://www.googleapis.com/auth/earthengine.readonly https://www.googleapis.com/auth/devstorage.read_write',
             'redirect_uri': o.redirect_uri,
             'response_type': 'code',
             'client_id': o.client_id
