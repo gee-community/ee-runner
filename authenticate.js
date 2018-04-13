@@ -8,7 +8,12 @@ var HOME = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 var AUTH_FILE = path.join(__dirname, 'config/authinfo.json');
 var REFRESH_TOKEN_FILE = HOME + '/.config/earthengine/credentials';
 
-initialize = function (onsuccess) {
+initialize = function (onsuccess, auth) {
+    if(auth) {
+      console.log('Resetting authentication ...')
+      fs.unlinkSync(REFRESH_TOKEN_FILE);
+    }
+
     var o = JSON.parse(fs.readFileSync(AUTH_FILE, 'utf8'));
     var client = new google.auth.OAuth2(o.client_id, o.client_secret, o.redirect_uri);
 
@@ -20,8 +25,9 @@ initialize = function (onsuccess) {
         client.refreshAccessToken(function (err, tokens) {
             ee.data.authToken_ = 'Bearer ' + tokens['access_token'];
             ee.data.authClientId_ = o.cliet_id;
-            ee.data.authScopes_ = [ee.data.AUTH_SCOPE_];
+            ee.data.authScopes_ = [ee.data.AUTH_SCOPE_, 'https://www.googleapis.com/auth/devstorage.read_write'];
             ee.data.DEFAULT_API_BASE_URL_ = "https://earthengine.googleapis.com/api";
+
             ee.initialize(ee.data.DEFAULT_API_BASE_URL_);
 
             onsuccess();
@@ -33,7 +39,7 @@ initialize = function (onsuccess) {
     // generate refresh token
     if (!fs.existsSync(REFRESH_TOKEN_FILE)) {
         var params = {
-            'scope': 'https://www.googleapis.com/auth/earthengine.readonly',
+            'scope': 'https://www.googleapis.com/auth/earthengine.readonly https://www.googleapis.com/auth/devstorage.read_write',
             'redirect_uri': o.redirect_uri,
             'response_type': 'code',
             'client_id': o.client_id
