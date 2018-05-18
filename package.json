@@ -7,7 +7,7 @@
   "repository": "https://github.com/gee-community/ee-runner",
   "main": "index.js",
   "dependencies": {
-    "@google/earthengine": "^0.1.136-prerelease",
+    "@google/earthengine": "^0.1.138-prerelease",
     "commander": "^2.15.1",
     "deasync": "0.1.x",
     "mkdirp": "0.5.1",
