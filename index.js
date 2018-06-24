@@ -13,12 +13,20 @@ global.Map.addLayer = function(arg) {}
 global.Map.addCenterObject = function(arg) {}
 global.Map.getBounds = function(arg) {}
 global.Map.getCenter = function(arg) {}
+global.Map.setCenter = function(arg) {}
 global.Map.centerObject = function(arg) {}
 global.Map.setOptions = function(arg) {}
 global.Chart = function(arg) {}
 global.Chart.image = function(arg) {}
 global.Chart.image.histogram = function(arg) {}
 global.commandLine = true
+global.ui = function(arg) {}
+global.ui.Chart = function(arg) { console.log('ui.Chart is not implemented yet') }
+global.ui.Chart.image = global.ui.Chart
+global.ui.Chart.image.doySeries = global.ui.Chart
+global.ui.Chart.image.doySeriesByYear = global.ui.Chart
+global.ui.Chart.image.doySeriesByRegion = global.ui.Chart
+
 
 // First, checks if it isn't implemented yet.
 if (!global.String.prototype.format) {
