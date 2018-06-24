@@ -12,7 +12,7 @@ var cmd = require('commander')
 cmd
   .version('0.0.1')
   .description('Google Earth Engine Playground code runner')
-  .usage('ee-runner <path>')
+  .usage('<code-editor-script-path>')
   .option('-a, --authenticate', 'Authenticate user to acess Google Earth Engine and Google Cloud Storage')
   .parse(process.argv);
 
