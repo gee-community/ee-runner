@@ -2,8 +2,6 @@
 
 var path = require('path');
 
-console.log(__dirname)
-
 var pathIndex = path.join(__dirname, 'index.js');
 
 require(pathIndex)
@@ -17,12 +15,6 @@ cmd
   .usage('<code-editor-script-path>')
   .option('-a, --authenticate', 'Authenticate user to acess Google Earth Engine and Google Cloud Storage')
   .parse(process.argv);
-
-console.log(cmd)
-
-console.log(cmd.args)
-
-console.log(cmd.args.length)
 
 if(cmd.rawArgs.length < 1) {
   cmd.help();
