@@ -1,4 +1,4 @@
-var image = new ee.Image(new ee.ImageCollection('LANDSAT/LC8_L1T_TOA').first());
+var image = new ee.Image(new ee.ImageCollection('LANDSAT/LC8_L1T_TOA').first()).select('B1');
 
 var json = ee.Serializer.toJSON(image.select(0))
 
@@ -13,7 +13,7 @@ var params = {
   region:region,
   //crs:'EPSG:4326',
   dimensions:'100x100',
-  pyramidingPolicy: 'mean',  // mean, sample, min, max, or mode
+  pyramidingPolicy: '{"B1": "MEAN"}',  // optional, one of MEAN, SAMPLE, MIN, MAX, or MODE per band
   assetId:'users/gena/test-export'
 }
 
