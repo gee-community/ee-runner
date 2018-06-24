@@ -2,6 +2,8 @@
 
 var path = require('path');
 
+console.log(__dirname)
+
 var pathIndex = path.join(__dirname, 'index.js');
 
 require(pathIndex)
@@ -16,7 +18,13 @@ cmd
   .option('-a, --authenticate', 'Authenticate user to acess Google Earth Engine and Google Cloud Storage')
   .parse(process.argv);
 
-if(cmd.args.length < 1) {
+console.log(cmd)
+
+console.log(cmd.args)
+
+console.log(cmd.args.length)
+
+if(cmd.rawArgs.length < 1) {
   cmd.help();
   process.exit();
 }
@@ -24,10 +32,9 @@ if(cmd.args.length < 1) {
 // initialize google earth engine and call script
 gee.initialize(function() {
   global.args = cmd.args;
-  var scriptName = cmd.args[0];
-  var scriptPath = path.join(process.cwd(), scriptName);
+  var script = cmd.args[0];
 
-  console.log('Running script: ' + scriptPath);
+  console.log('Running script: ' + script);
 
-  require(scriptPath);
+  require(script);
 }, cmd.authenticate);
