@@ -82,3 +82,9 @@ download(url, 'hello.jpg');
 * hello.jpg
 
 ![hello.jpg](https://github.com/gena/ee-runner/blob/master/examples/hello.jpg?raw=true "Result")
+
+### Roadmap
+
+- [ ] Fetch user scripts from https://earthengine.googlesource.com/
+- [ ] Implement ui.Chart printing to PNG / SVG
+
