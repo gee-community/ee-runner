@@ -11,8 +11,14 @@ Command line runner of [Google Earth Engine Playground](https://ee-api.appspot.c
 
 ```javascript
 > ee-runner <script-file>
-
 ```
+
+or 
+
+```javascript
+> ee <script-file>
+```
+
 
 ### Install as a package
 
