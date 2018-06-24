@@ -16,7 +16,7 @@ cmd
   .option('-a, --authenticate', 'Authenticate user to acess Google Earth Engine and Google Cloud Storage')
   .parse(process.argv);
 
-if(cmd.rawArgs.length < 1) {
+if(cmd.rawArgs.length < 3) {
   cmd.help();
   process.exit();
 }

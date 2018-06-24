@@ -6,7 +6,7 @@ Command line runner of [Google Earth Engine Playground](https://ee-api.appspot.c
 
 ### Install globally and use as a script
 
-* npm install -g ee-runner
+* npm install -g ee-runner (or npm update -g ee-runner)
 
 
 * Run Code Editor scripts as:
