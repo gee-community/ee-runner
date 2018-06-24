@@ -2,6 +2,8 @@
 
 Command line runner of [Google Earth Engine Playground](https://ee-api.appspot.com/) scripts using Node.js.
 
+[![Gitter](https://badges.gitter.im/gee-community/ee-runner.svg)](https://gitter.im/gee-community/ee-runner?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 ### Install globally and use as a script
 
 * npm install -g ee-runner
