@@ -3,16 +3,20 @@
   "description": "Node.js cli interface for Google Earth Engine JS scripts",
   "author": "Gennadii Donchyts <gennadiy.donchyts@gmail.com>",
   "license": "MIT",
-  "version": "0.0.14",
+  "version": "0.0.20",
   "repository": "https://github.com/gee-community/ee-runner",
+  "preferGlobal": "true",
+  "bin": {
+    "ee-runner": "./ee-runner.js"
+  },
   "main": "index.js",
   "dependencies": {
     "@google/earthengine": "^0.1.138-prerelease",
     "commander": "^2.15.1",
     "deasync": "0.1.x",
+    "jszip": "2.x.x",
     "mkdirp": "0.5.1",
     "opener": "1.4.1",
-    "request": "2.58.x",
-    "jszip": "2.x.x"
+    "request": "^2.87.0"
   }
 }
