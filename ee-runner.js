@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
-var path = require('path');
+let path = require('path');
 
-var pathIndex = path.join(__dirname, 'index.js');
+let pathIndex = path.join(__dirname, 'index.js');
 
 require(pathIndex)
 
 // parse command line
-var cmd = require('commander')
+let cmd = require('commander')
 
 cmd
   .version('0.0.1')
@@ -24,9 +24,11 @@ if(cmd.rawArgs.length < 1) {
 // initialize google earth engine and call script
 gee.initialize(function() {
   global.args = cmd.args;
-  var script = cmd.args[0];
+  let script = cmd.args[0];
 
   console.log('Running script: ' + script);
+
+  script = path.resolve(script)
 
   require(script);
 }, cmd.authenticate);
