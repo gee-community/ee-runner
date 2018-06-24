@@ -8,6 +8,9 @@ var HOME = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 var AUTH_FILE = path.join(__dirname, 'config/authinfo.json');
 var REFRESH_TOKEN_FILE = HOME + '/.config/earthengine/credentials';
 
+// constants
+// var REFRESH_TOKEN_FILE = path.join(__dirname, 'config/refresh.json');
+
 initialize = function (onsuccess, auth) {
     if(auth) {
       console.log('Resetting authentication ...')
