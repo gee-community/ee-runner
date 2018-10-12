@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const path = require('path');
 
 let pathIndex = path.join(__dirname, 'index.js');
@@ -8,21 +10,26 @@ require(pathIndex)
 let cmd = require('commander')
 
 cmd
-  .version('0.0.1')
+  .version('0.0.30')
   .description('Google Earth Engine Playground code runner')
   .usage('<code-editor-script-path>')
   .option('-a, --authenticate', 'Authenticate user to acess Google Earth Engine and Google Cloud Storage')
   .parse(process.argv);
 
-if(cmd.rawArgs.length < 1) {
+if(cmd.rawArgs.length < 3) {
   cmd.help();
   process.exit();
 }
+
 
 // initialize google earth engine and call script
 gee.initialize(function() {
   global.args = cmd.args;
   let script = cmd.args[0];
+
+  if(cmd.authenticate) {
+      process.exit() // just authenticate
+  }
 
   console.log('Running script: ' + script);
   
