@@ -1,6 +1,4 @@
-#!/usr/bin/env node
-
-let path = require('path');
+const path = require('path');
 
 let pathIndex = path.join(__dirname, 'index.js');
 
@@ -16,7 +14,7 @@ cmd
   .option('-a, --authenticate', 'Authenticate user to acess Google Earth Engine and Google Cloud Storage')
   .parse(process.argv);
 
-if(cmd.rawArgs.length < 3) {
+if(cmd.rawArgs.length < 1) {
   cmd.help();
   process.exit();
 }
@@ -27,6 +25,8 @@ gee.initialize(function() {
   let script = cmd.args[0];
 
   console.log('Running script: ' + script);
+  
+  // TODO: if script is from users/* - fetch
 
   script = path.resolve(script)
 

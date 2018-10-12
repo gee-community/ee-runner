@@ -5,10 +5,14 @@ var ee = require('@google/earthengine');
 var fs = require('fs')
 var request = require('request');
 
-// replacements used in playground code
+// define stubs for the classes used in the Code Editor
 global.ee = ee;
 global.print = function(arg) { if(arg) { console.log(arg); } }
-global.Map = function(arg) {}
+
+if(!global.Map) {
+  global.Map = function(arg) {}
+}
+
 global.Map.addLayer = function(arg) {}
 global.Map.addCenterObject = function(arg) {}
 global.Map.getBounds = function(arg) {}
