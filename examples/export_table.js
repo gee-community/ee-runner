@@ -7,7 +7,7 @@ var params = {
     type: 'EXPORT_FEATURES',
     description: 'desc',
     driveFileNamePrefix: 'test',
-    format: 'GeoJSON'
+    fileFormat: 'GeoJSON'
 };
 
 var taskId = ee.data.newTaskId(1);
