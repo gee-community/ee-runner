@@ -6,7 +6,7 @@ Command line runner of [Google Earth Engine Playground](https://ee-api.appspot.c
 
 ### Install or update globally and use as a script
 
-* npm install -g ee-runner@latest
+* `npm install -g ee-runner@latest`
 
 * Run Code Editor scripts as:
 
@@ -23,7 +23,7 @@ or
 
 ### Install as a package
 
-* npm install ee-runner
+* `npm install ee-runner`
 
 
 * in your scripts, use:
@@ -42,17 +42,17 @@ gee.initialize(function() {
 
 * Clone this repository.
 * Inside Repository
-  * Run: npm run init
+  * `Run: npm run init`
 
 You may have to remove any previous and no longer valid tokens, for example having played with ee-python.
 ```rm ~/.config/earthengine/credentials```.
 
 ### Usage
-* node ee-runner.js \<playground script file\>
+* `node ee-runner.js \<playground script file\>`
 
 ### Example
 
-* node ee-runner.js examples/hello.js
+* `node ee-runner.js examples/hello.js`
 
 ```
 First image in LANDSAT 8 TOA collection was aquired on 2013-09-26
