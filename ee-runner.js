@@ -10,7 +10,7 @@ require(pathIndex)
 let cmd = require('commander')
 
 cmd
-  .version('0.0.30')
+  .version('0.0.31')
   .description('Google Earth Engine Playground code runner')
   .usage('<code-editor-script-path>')
   .option('-a, --authenticate', 'Authenticate user to acess Google Earth Engine and Google Cloud Storage')

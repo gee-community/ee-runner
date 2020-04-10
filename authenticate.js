@@ -1,7 +1,7 @@
 var path = require('path');
 var fs = require('fs');
 var ee = require('@google/earthengine');
-var google = require('googleapis');
+const {google} = require('googleapis');
 
 // constants
 var HOME = process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
@@ -14,11 +14,14 @@ var REFRESH_TOKEN_FILE = HOME + '/.config/earthengine/credentials';
 initialize = function (onsuccess, auth) {
     if(auth) {
       console.log('Resetting authentication ...')
-      fs.unlinkSync(REFRESH_TOKEN_FILE);
+      if (fs.existsSync(REFRESH_TOKEN_FILE)) {
+        fs.unlinkSync(REFRESH_TOKEN_FILE);
+      }
     }
 
     var o = JSON.parse(fs.readFileSync(AUTH_FILE, 'utf8'));
-    var client = new google.auth.OAuth2(o.client_id, o.client_secret, o.redirect_uri);
+
+    const client = new google.auth.OAuth2(o.client_id, o.client_secret, o.redirect_uri);
 
     function init() {
         var o2 = JSON.parse(fs.readFileSync(REFRESH_TOKEN_FILE, 'utf8'));
@@ -26,26 +29,25 @@ initialize = function (onsuccess, auth) {
         client.setCredentials({refresh_token: o2.refresh_token});
 
         client.refreshAccessToken(function (err, tokens) {
-            ee.data.authToken_ = 'Bearer ' + tokens['access_token'];
-            ee.data.authClientId_ = o.cliet_id;
-            ee.data.authScopes_ = [ee.data.AUTH_SCOPE_, 'https://www.googleapis.com/auth/devstorage.read_write'];
-            ee.data.DEFAULT_API_BASE_URL_ = "https://earthengine.googleapis.com/api";
+            ee.apiclient.setAuthToken('', 'Bearer', tokens['access_token'], 3600, [], undefined, false);
 
-            ee.initialize(ee.data.DEFAULT_API_BASE_URL_);
+            ee.apiclient.setCloudApiEnabled(true);
 
-            onsuccess();
+            ee.initialize(null, null, () => {
+                onsuccess();
 
-            process.exit();
+                process.exit();
+            });
         });
     }
 
     // generate refresh token
     if (!fs.existsSync(REFRESH_TOKEN_FILE)) {
         var params = {
-            'scope': 'https://www.googleapis.com/auth/earthengine.readonly https://www.googleapis.com/auth/devstorage.read_write',
+            'client_id': o.client_id,
+            'scope': 'https://www.googleapis.com/auth/earthengine https://www.googleapis.com/auth/devstorage.full_control',
             'redirect_uri': o.redirect_uri,
-            'response_type': 'code',
-            'client_id': o.client_id
+            'response_type': 'code'
         };
 
         var querystring = require('querystring');
