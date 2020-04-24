@@ -1,13 +1,11 @@
 var image = new ee.Image(new ee.ImageCollection('LANDSAT/LC8_L1T_TOA').first()).select('B1');
 
-var json = ee.Serializer.toJSON(image.select(0))
-
 var region = JSON.stringify(image.select(0).geometry().bounds().getInfo())
 
 print(region)
 
 var params = {
-  json:json,
+  element:image.select(0),
   type:'EXPORT_IMAGE',
   description:'test',
   region:region,
