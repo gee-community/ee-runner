@@ -35,8 +35,6 @@ initialize = function (onsuccess, auth) {
 
             ee.initialize(null, null, () => {
                 onsuccess();
-
-                process.exit();
             });
         });
     }
