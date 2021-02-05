@@ -31,7 +31,7 @@ initialize = function (onsuccess, auth) {
         client.refreshAccessToken(function (err, tokens) {
             ee.apiclient.setAuthToken('', 'Bearer', tokens['access_token'], 3600, [], undefined, false);
 
-            ee.apiclient.setCloudApiEnabled(true);
+            // ee.apiclient.setCloudApiEnabled(true);
 
             ee.initialize(null, null, () => {
                 onsuccess();
