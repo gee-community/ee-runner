@@ -16,7 +16,7 @@
     "googleapis": "48.0.0",
     "commander": "2.19.x",
     "deasync": "0.1.x",
-    "jszip": "2.x.x",
+    "jszip": "3.x.x",
     "mkdirp": "0.5.x",
     "opener": "1.5.x",
     "request": "2.88.x"
