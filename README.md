@@ -33,7 +33,7 @@ require("ee-runner")
 
 gee.initialize(function() {
   // ... your Google Earth Engine code comes here ...
-})
+}, opt_project)
 
 ```
 
@@ -44,11 +44,12 @@ gee.initialize(function() {
 * Inside Repository
   * `Run: npm run init`
 
-You may have to remove any previous and no longer valid tokens, for example having played with ee-python.
-```rm ~/.config/earthengine/credentials```.
+### Authenticate
+
+If you don't have Python version of Earth Engine installed - install it and run `earthengine authenticate` command.
 
 ### Usage
-* `node ee-runner.js \<playground script file\>`
+* `node ee-runner.js \<playground script file\> --project=<YOUR_PROJECT_NAME>`
 
 ### Example
 

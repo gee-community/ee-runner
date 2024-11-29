@@ -1,4 +1,4 @@
-var image = new ee.Image(new ee.ImageCollection('LANDSAT/LC8_L1T_TOA').first());
+var image = new ee.Image(new ee.ImageCollection('LANDSAT/LC08/C02/T1_TOA').first());
 var info = image.getInfo();
 
 var date = info.properties['DATE_ACQUIRED']
