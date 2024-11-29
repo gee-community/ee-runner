@@ -11,13 +11,13 @@ Command line runner of [Google Earth Engine Playground](https://ee-api.appspot.c
 * Run Code Editor scripts as:
 
 ```javascript
-> ee-runner <script-file>
+> ee-runner <script-file> --project=<cloud-project-name>
 ```
 
 or 
 
 ```javascript
-> ee <script-file>
+> ee <script-file> --project=<cloud-project-name>
 ```
 
 
@@ -33,7 +33,7 @@ require("ee-runner")
 
 gee.initialize(function() {
   // ... your Google Earth Engine code comes here ...
-}, opt_project)
+}, project)
 
 ```
 
@@ -49,11 +49,11 @@ gee.initialize(function() {
 If you don't have Python version of Earth Engine installed - install it and run `earthengine authenticate` command.
 
 ### Usage
-* `node ee-runner.js \<playground script file\> --project=<YOUR_PROJECT_NAME>`
+* `node ee-runner.js <script-file> --project=<cloud-project-name>`
 
 ### Example
 
-* `node ee-runner.js examples/hello.js`
+* `node ee-runner.js examples/hello.js --project=ee-runner-test`
 
 ```
 First image in LANDSAT 8 TOA collection was aquired on 2013-09-26
@@ -63,7 +63,7 @@ Downloading thumbnail ...
 * cat examples/hello.js
 
 ```javascript
-var image = new ee.Image(new ee.ImageCollection('LANDSAT/LC8_L1T_TOA').first());
+var image = new ee.Image(new ee.ImageCollection('LANDSAT/LC08/C02/T1_TOA').first());
 var info = image.getInfo();
 
 var date = info.properties['DATE_ACQUIRED'];
